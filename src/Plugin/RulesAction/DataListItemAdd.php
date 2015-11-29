@@ -44,13 +44,21 @@ use Drupal\rules\Core\RulesActionBase;
 class DataListItemAdd extends RulesActionBase {
 
   /**
-   * {@inheritdoc}
+   * Executes the Plugin.
+   *
+   * @param array $list
+   *   An array to add an item to.
+   * @param mixed $item
+   *   An item which is being added to the array.
+   * @param bool $unique
+   *   A boolean value which indicates if the item should be updated if it is
+   *   already in the list array.
+   * @param string $pos
+   *   Position in array where the item is being added.
    */
-  public function execute() {
-    $list = $this->getContextValue('list');
-    $item = $this->getContextValue('item');
-    $position = ($this->getContextValue('pos') ? $this->getContextValue('pos') : 'end');
-    $unique = ($this->getContextValue('unique') ? $this->getContextValue('unique') : FALSE);
+  public function doExecute($list, $item, $unique, $pos) {
+    $position = ($pos ? $pos : 'end');
+    $unique = ($unique ? $unique : FALSE);
     // Optionally, only add the list item if it is not yet contained.
     if (!((bool) $unique && in_array($item, $list))) {
       if ($position === 'start') {
