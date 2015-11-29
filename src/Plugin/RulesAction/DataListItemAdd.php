@@ -56,7 +56,7 @@ class DataListItemAdd extends RulesActionBase {
    * @param string $pos
    *   Position in array where the item is being added.
    */
-  public function doExecute($list, $item, $unique, $pos) {
+  protected function doExecute($list, $item, $unique, $pos) {
     $position = ($pos ? $pos : 'end');
     $unique = ($unique ? $unique : FALSE);
     // Optionally, only add the list item if it is not yet contained.
