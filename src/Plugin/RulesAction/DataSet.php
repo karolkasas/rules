@@ -43,7 +43,7 @@ class DataSet extends RulesActionBase {
    * @param mixed $value
    *   A new value which is being set to an element identified by data selector.
    */
-  public function doExecute($data, $value) {
+  protected function doExecute($data, $value) {
     $typed_data = $this->getContext('data')->getContextData();
     $typed_data->setValue($value);
   }
