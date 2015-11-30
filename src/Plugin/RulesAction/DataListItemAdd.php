@@ -51,16 +51,18 @@ class DataListItemAdd extends RulesActionBase {
    * @param mixed $item
    *   An item which is being added to the array.
    * @param bool $unique
-   *   A boolean value which indicates if the item should be updated if it is
-   *   already in the list array.
+   *   (optional) A boolean value which indicates if the item should be updated
+   *   if it is already in the list array.
    * @param string $pos
-   *   Position in array where the item is being added.
+   *   (optional) Position in array where the item is being added. Accepted
+   *   value are:
+   *   - "start"      Beginning of the array.
+   *   - "end"        End of the array.
    */
-  protected function doExecute($list, $item, $unique, $pos) {
-    $position = ($pos ? $pos : 'end');
+  protected function doExecute($list, $item, $unique = FALSE, $pos = 'end') {
     // Optionally, only add the list item if it is not yet contained.
     if (!((bool) $unique && in_array($item, $list))) {
-      if ($position === 'start') {
+      if ($pos === 'start') {
         array_unshift($list, $item);
       }
       else {
